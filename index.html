@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width-device, initial-scale=1.0"/>
+    <title>Calcolo del BMI</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        input {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #5cb85c;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background: #4cae4c;
+            }
+
+        .result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1.2em;
+        }
+    </style>
+
+    </head>
+
+    <body>
+
+        <div class="container">
+
+            <h1>Calcolo del BMI</h1>
+
+            <label for="weight">Peso (kg):</label>
+
+            <input type="number" id="weight" placeholder="Inserisci il tuo peso" required>
+
+            <label for="height">Altezza (m):</label>
+
+            <input type="number" id="height" placeholder="Inserisci la tua altezza" step="0.01" required>
+
+            <button onclick="calcolaBMI()">Calcola BMI</button>
+
+            <div class="result" id="result"></div>
+
+        </div>
+
+
+        <script>
+
+        function calcolaBMI() {
+
+            // Ottieni i valori inseriti dall'utente
+
+            var peso = parseFloat(document.getElementById('weight').value);
+            var altezza = parseFloat(document.getElementById('height').value);
+
+
+            // Verifica che i valori siano validi
+
+            if (isNaN(peso) || isNaN(altezza) || peso <= 0 || altezza <= 0) {
+
+                alert('Per favore, inserisci valori validi per peso e altezza.');
+
+                return;
+
+            }
+
+            // Calcolo del BMI
+
+            var bmi = peso / (altezza * altezza);
+
+
+            // modifico il contenuto della classificazione in base ai vari casi
+
+            let classificazione = '';
+
+            if (bmi < 18.5) {
+
+                classificazione = 'Sottopeso';
+
+            } else if (bmi < 25) {
+
+                classificazione = 'Normopeso';
+
+            } else if (bmi < 30) {
+
+                classificazione = 'Sovrappeso';
+
+            } else {
+
+                classificazione = 'Obesità';
+
+            }
+
+            // Mostra il risultato
+
+            var risultato = "Il tuo BMI è " + bmi.toFixed(2) + " e sei classificato come: " + classificazione + ".";
+            document.getElementById('result').innerText = risultato;
+
+            document.getElementById('result').innerText = risultato;
+        }
+
+        </script>
+</body>
+</html>
